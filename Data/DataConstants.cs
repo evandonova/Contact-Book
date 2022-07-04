@@ -12,6 +12,6 @@
 
         public const int MaxPhoneNumberLength = 13;
 
-        public const int MaxCommentsLength = 80;
+        public const int MaxCommentsLength = 200;
     }
 }

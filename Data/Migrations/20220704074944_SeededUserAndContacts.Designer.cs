@@ -4,6 +4,7 @@ using Contact_Book.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Contact_Book.Data.Migrations
 {
     [DbContext(typeof(ContactBookDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220704074944_SeededUserAndContacts")]
+    partial class SeededUserAndContacts
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,8 +34,8 @@ namespace Contact_Book.Data.Migrations
 
                     b.Property<string>("Comments")
                         .IsRequired()
-                        .HasMaxLength(80)
-                        .HasColumnType("nvarchar(80)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -67,6 +69,41 @@ namespace Contact_Book.Data.Migrations
                     b.HasIndex("OwnerId");
 
                     b.ToTable("Contacts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Comments = "Steven Jobs was an American business magnate, industrial designer, investor, and media proprietor.",
+                            DateCreated = new DateTime(2021, 8, 18, 10, 49, 44, 523, DateTimeKind.Local).AddTicks(9794),
+                            Email = "steve@apple.com",
+                            FirstName = "Steve",
+                            LastName = "Jobs",
+                            OwnerId = "guest856-c198-4129-b3f3-b893d8395082",
+                            PhoneNumber = "+180023456789"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Comments = "Michael Joseph Jackson was an American singer, songwriter, and dancer.",
+                            DateCreated = new DateTime(2021, 2, 19, 10, 49, 44, 523, DateTimeKind.Local).AddTicks(9827),
+                            Email = "michael@jackson.com",
+                            FirstName = "Michael",
+                            LastName = "Jackson",
+                            OwnerId = "guest856-c198-4129-b3f3-b893d8395082",
+                            PhoneNumber = "+190088877744"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Comments = "Albert Einstein was a German-born theoretical physicist, universally acknowledged to be one of the two greatest physicists of all time, the other being Isaac Newton.",
+                            DateCreated = new DateTime(2019, 10, 8, 10, 49, 44, 523, DateTimeKind.Local).AddTicks(9829),
+                            Email = "albert.e@uzh.ch",
+                            FirstName = "Albert",
+                            LastName = "Einstein",
+                            OwnerId = "guest856-c198-4129-b3f3-b893d8395082",
+                            PhoneNumber = "+41446344901"
+                        });
                 });
 
             modelBuilder.Entity("Contact_Book.Data.Entities.User", b =>
@@ -144,6 +181,27 @@ namespace Contact_Book.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "guest856-c198-4129-b3f3-b893d8395082",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "302bd798-a046-4997-94ea-6b5f0126e192",
+                            Email = "guest@mail.com",
+                            EmailConfirmed = false,
+                            FirstName = "Guest",
+                            LastName = "User",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "GUEST@MAIL.COM",
+                            NormalizedUserName = "GUEST@MAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEVZApI6Cmg4z8A+Dgb+KZAM/0cul15SxsiVXQCSdES231lLyH7ngepPx32+1ZrT0w==",
+                            PhoneNumber = "+359000000000",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "1a2b057a-ea97-471b-a07f-d112e08371b8",
+                            TwoFactorEnabled = false,
+                            UserName = "guest@mail.com"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
