@@ -13,5 +13,7 @@
         public const int MaxPhoneNumberLength = 13;
 
         public const int MaxCommentsLength = 200;
+
+        public const string PhoneNumberRegex = @"^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$";
     }
 }

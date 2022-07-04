@@ -1,26 +1,31 @@
-﻿using Contact_Book.Models;
+﻿using Contact_Book.Data;
+using Contact_Book.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace Contact_Book.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ContactBookDbContext dbContext;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        public HomeController(ContactBookDbContext context)
+            => this.dbContext = context;
 
         public IActionResult Index()
         {
-            return View();
-        }
+            var homeModel = new HomeViewModel();
+            homeModel.AllContactsCount = this.dbContext.Contacts.Count();
 
-        public IActionResult Privacy()
-        {
-            return View();
+            if (this.User.Identity.IsAuthenticated)
+            {
+                var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                homeModel.UserContactsCount = this.dbContext.Contacts
+                    .Where(c => c.OwnerId == currentUserId).Count();
+            }
+
+            return View(homeModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

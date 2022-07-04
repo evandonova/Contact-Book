@@ -61,7 +61,7 @@ namespace Contact_Book.Areas.Identity.Pages.Account
             public string LastName { get; set; }
 
             [Required]
-            [RegularExpression(@"^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$", ErrorMessage = "Enter a valid phone number.")]
+            [RegularExpression(PhoneNumberRegex, ErrorMessage = "Enter a valid phone number (without spaces).")]
             public string PhoneNumber { get; set; }
 
             [Required]
