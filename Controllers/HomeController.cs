@@ -1,4 +1,5 @@
 ﻿using Contact_Book.Data;
+using Contact_Book.Infrastructure;
 using Contact_Book.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -20,9 +21,19 @@ namespace Contact_Book.Controllers
 
             if (this.User.Identity.IsAuthenticated)
             {
-                var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 homeModel.UserContactsCount = this.dbContext.Contacts
-                    .Where(c => c.OwnerId == currentUserId).Count();
+                    .Where(c => c.OwnerId == this.User.Id()).Count();
+
+                var currentUser = this.dbContext.Users.Find(this.User.Id());
+                homeModel.UserFullName = currentUser.FirstName + " " + currentUser.LastName;
+
+                homeModel.UserContact = new ContactViewModel()
+                {
+                    FirstName = currentUser.FirstName,
+                    LastName = currentUser.LastName,
+                    Email = currentUser.Email,
+                    PhoneNumber = currentUser.PhoneNumber
+                };
             }
 
             return View(homeModel);

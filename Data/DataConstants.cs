@@ -11,6 +11,7 @@
         public const int MaxEmailLength = 64;
 
         public const int MaxPhoneNumberLength = 13;
+        public const int MinPhoneNumberLength = 10;
 
         public const int MaxCommentsLength = 200;
 

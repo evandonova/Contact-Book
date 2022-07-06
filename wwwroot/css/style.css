@@ -24,7 +24,7 @@
     margin: 10px 0px 0px 180px;
 }
 
-.boardSpan {
+.pageSpan {
     font-size: 18px;
 }
 
@@ -43,7 +43,7 @@ div.home-page-icons a {
     padding: 0px 10px;
     border-radius: 5px;
     border: 1px solid rgb(125, 170, 238);
-    margin: 10px 10px 0px 0px;
+    margin: 15px 15px 15px 15px;
     text-align: center;
     display: inline-block;
     vertical-align: middle;
@@ -62,6 +62,11 @@ div.home-page-icons a {
         color: white;
     }
 
+div.bottomTable {
+    position: absolute;
+    bottom: 80px
+}
+
 aside {
     grid-area: aside;
     background: rgb(181, 216, 255);
@@ -70,7 +75,7 @@ aside {
     position: absolute;
     font-size: 18px;
     top: 73px;
-    bottom: 75px;
+    bottom: 80px;
 }
 
     aside ul {
@@ -100,6 +105,7 @@ aside {
     aside {
         top: 65px;
         font-size: 16px;
+        bottom: 74px;
     }
 }
 
@@ -164,14 +170,18 @@ table {
         color: white;
     }
 
-div.tasks-grid {
+.light tr:nth-child(1) {
+     background-color: white;
+}
+
+div.contacts-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
 }
 
 @media (max-width: 1000px) {
-    div.tasks-grid {
+    div.contacts-grid {
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         gap: 10px;
@@ -184,7 +194,7 @@ div.tasks-grid {
     }
 }
 
-div.tasks-grid div.task h1 {
+div.contacts-grid div.contact h1 {
     background: #eee;
     padding: 8px 10px;
     border-radius: 2px;
@@ -193,47 +203,6 @@ div.tasks-grid div.task h1 {
 div .form-floating {
     margin-bottom: 5px;
 }
-
-table.task-entry {
-    margin: 10px 0px;
-}
-
-    table.task-entry th {
-        width: 120px;
-    }
-
-    table.task-entry td {
-        width: 100%;
-        display: -webkit-box;
-        -webkit-line-clamp: 4; /* number of lines to show */
-        -webkit-box-orient: vertical;
-        word-break: break-word;
-    }
-
-        table.task-entry td div.description {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 4; /* number of lines to show */
-            -webkit-box-orient: vertical;
-            word-break: break-word;
-        }
-
-td.description {
-    white-space: pre-wrap;
-}
-
-table.task-details {
-    margin-bottom: 20px;
-}
-
-    table.task-details th {
-        width: 120px;
-    }
-
-    table.task-details tr {
-        word-break: break-word;
-    }
 
 form table {
     max-width: 800px;
@@ -259,10 +228,6 @@ input.btn {
     max-width: 800px;
     font-size: 1.2em;
     color: black;
-}
-
-table.tasks-entry #Description {
-    height: 15em;
 }
 
 .footer {
