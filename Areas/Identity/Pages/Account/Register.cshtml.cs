@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace Contact_Book.Areas.Identity.Pages.Account
@@ -41,8 +42,6 @@ namespace Contact_Book.Areas.Identity.Pages.Account
         public InputModel Input { get; set; }
 
         public string ReturnUrl { get; set; }
-
-        public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         public class InputModel
         {
@@ -78,15 +77,12 @@ namespace Contact_Book.Areas.Identity.Pages.Account
         public async Task OnGetAsync(string returnUrl = null)
         {
             ReturnUrl = returnUrl;
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
             returnUrl ??= Url.Content("~/");
 
-            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-            
             if (ModelState.IsValid)
             {
                 var user = new User
@@ -98,15 +94,29 @@ namespace Contact_Book.Areas.Identity.Pages.Account
                     PhoneNumber = Input.PhoneNumber,
                 };
 
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                bool isPhoneAlreadyRegistered = _userManager.Users.Any(item => item.PhoneNumber == Input.PhoneNumber);
 
+                if (isPhoneAlreadyRegistered)
+                {
+                    ModelState.AddModelError(Input.PhoneNumber, "This phone number is already used.");
+                    return Page();
+                }
+
+                var result = await _userManager.CreateAsync(user, Input.Password);
+                
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return LocalRedirect(returnUrl);
                 }
+
                 foreach (var error in result.Errors)
                 {
+                    if(error.Code == "DuplicateUserName")
+                    {
+                        error.Description = "Email is already taken.";
+                    }
+
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
