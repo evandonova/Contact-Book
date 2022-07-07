@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Contact_Book.Data.Entities;
+using System.Globalization;
 
 namespace Contact_Book.Data
 {
@@ -37,7 +38,7 @@ namespace Contact_Book.Data
                         LastName = "Jobs",
                         Email = "steve@apple.com",
                         PhoneNumber = "+180023456789",
-                        DateCreated = DateTime.Now.AddDays(-320),
+                        DateCreated = DateTime.ParseExact("29-05-2015 05:50", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
                         Comments = "Steven Jobs was an American business magnate, industrial designer, investor, and media proprietor.",
                         OwnerId = this.guestUser.Id
                     },
@@ -48,7 +49,7 @@ namespace Contact_Book.Data
                         LastName = "Jackson",
                         Email = "michael@jackson.com",
                         PhoneNumber = "+190088877744",
-                        DateCreated = DateTime.Now.AddDays(-500),
+                        DateCreated = DateTime.ParseExact("07-05-2022 10:20", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
                         Comments = "Michael Joseph Jackson was an American singer, songwriter, and dancer.",
                         OwnerId = this.guestUser.Id
                     },
@@ -59,7 +60,7 @@ namespace Contact_Book.Data
                         LastName = "Einstein",
                         Email = "albert.e@uzh.ch",
                         PhoneNumber = "+41446344901",
-                        DateCreated = DateTime.Now.AddDays(-1000),
+                        DateCreated = DateTime.ParseExact("11-11-2019 13:30", "dd-MM-yyyy HH:mm", CultureInfo.InvariantCulture),
                         Comments = "Albert Einstein was a German-born theoretical physicist, universally acknowledged to be one of the two greatest physicists of all time, the other being Isaac Newton.",
                         OwnerId = this.guestUser.Id
                     });

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Contact_Book.Data.Migrations
 {
     [DbContext(typeof(ContactBookDbContext))]
-    [Migration("20220704074944_SeededUserAndContacts")]
-    partial class SeededUserAndContacts
+    [Migration("20220707081627_CreatedTablesAndSeededData")]
+    partial class CreatedTablesAndSeededData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,7 +33,6 @@ namespace Contact_Book.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Comments")
-                        .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
@@ -57,7 +56,7 @@ namespace Contact_Book.Data.Migrations
 
                     b.Property<string>("OwnerId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -66,8 +65,6 @@ namespace Contact_Book.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OwnerId");
-
                     b.ToTable("Contacts");
 
                     b.HasData(
@@ -75,7 +72,7 @@ namespace Contact_Book.Data.Migrations
                         {
                             Id = 1,
                             Comments = "Steven Jobs was an American business magnate, industrial designer, investor, and media proprietor.",
-                            DateCreated = new DateTime(2021, 8, 18, 10, 49, 44, 523, DateTimeKind.Local).AddTicks(9794),
+                            DateCreated = new DateTime(2015, 5, 29, 5, 50, 0, 0, DateTimeKind.Unspecified),
                             Email = "steve@apple.com",
                             FirstName = "Steve",
                             LastName = "Jobs",
@@ -86,7 +83,7 @@ namespace Contact_Book.Data.Migrations
                         {
                             Id = 2,
                             Comments = "Michael Joseph Jackson was an American singer, songwriter, and dancer.",
-                            DateCreated = new DateTime(2021, 2, 19, 10, 49, 44, 523, DateTimeKind.Local).AddTicks(9827),
+                            DateCreated = new DateTime(2022, 5, 7, 10, 20, 0, 0, DateTimeKind.Unspecified),
                             Email = "michael@jackson.com",
                             FirstName = "Michael",
                             LastName = "Jackson",
@@ -97,7 +94,7 @@ namespace Contact_Book.Data.Migrations
                         {
                             Id = 3,
                             Comments = "Albert Einstein was a German-born theoretical physicist, universally acknowledged to be one of the two greatest physicists of all time, the other being Isaac Newton.",
-                            DateCreated = new DateTime(2019, 10, 8, 10, 49, 44, 523, DateTimeKind.Local).AddTicks(9829),
+                            DateCreated = new DateTime(2019, 11, 11, 13, 30, 0, 0, DateTimeKind.Unspecified),
                             Email = "albert.e@uzh.ch",
                             FirstName = "Albert",
                             LastName = "Einstein",
@@ -187,7 +184,7 @@ namespace Contact_Book.Data.Migrations
                         {
                             Id = "guest856-c198-4129-b3f3-b893d8395082",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "302bd798-a046-4997-94ea-6b5f0126e192",
+                            ConcurrencyStamp = "9c534ef7-0318-4283-8728-6257c71032c9",
                             Email = "guest@mail.com",
                             EmailConfirmed = false,
                             FirstName = "Guest",
@@ -195,10 +192,10 @@ namespace Contact_Book.Data.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "GUEST@MAIL.COM",
                             NormalizedUserName = "GUEST@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEEVZApI6Cmg4z8A+Dgb+KZAM/0cul15SxsiVXQCSdES231lLyH7ngepPx32+1ZrT0w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELjSSitXlC8A+KsEjXx37SJWriX1+4tYUTLat/xKDeUDMq9bxcDh0qy3/Q/xohxRlw==",
                             PhoneNumber = "+359000000000",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "1a2b057a-ea97-471b-a07f-d112e08371b8",
+                            SecurityStamp = "dd146f4b-4ea2-46c2-9006-262e68c974d6",
                             TwoFactorEnabled = false,
                             UserName = "guest@mail.com"
                         });
@@ -339,17 +336,6 @@ namespace Contact_Book.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("Contact_Book.Data.Entities.Contact", b =>
-                {
-                    b.HasOne("Contact_Book.Data.Entities.User", "Owner")
-                        .WithMany()
-                        .HasForeignKey("OwnerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
