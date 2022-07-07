@@ -130,5 +130,65 @@ namespace Contact_Book.Controllers
             this.dbContext.SaveChanges();
             return RedirectToAction(nameof(All));
         }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var contact = this.dbContext.Contacts.Find(id);
+            if (contact == null)
+            {
+                return BadRequest();
+            }
+
+            if (this.User.Id() != contact.OwnerId)
+            {
+                // Not an owner -> return "Unauthorized"
+                return Unauthorized();
+            }
+
+            this.dbContext.Contacts.Remove(contact);
+            this.dbContext.SaveChanges();
+            return RedirectToAction(nameof(All));
+        }
+
+        public IActionResult Search()
+        {
+            return View(new ContactSearchFormModel());
+        }
+
+        [HttpPost]
+        public IActionResult Search(ContactSearchFormModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var contacts = this.dbContext
+                .Contacts
+                .Select(c => new ContactViewModel()
+                {
+                    FirstName = c.FirstName,
+                    LastName = c.LastName,
+                    Email = c.Email,
+                    PhoneNumber = c.PhoneNumber,
+                    Comments = c.Comments
+                });
+
+            var keyword = model.Keyword == null ? string.Empty : model.Keyword.Trim().ToLower();
+            if (!String.IsNullOrEmpty(keyword) && !String.IsNullOrEmpty(keyword))
+            {
+                contacts = contacts
+                .Where(t => t.FirstName.ToLower().Contains(keyword)
+                    || t.LastName.ToLower().Contains(keyword)
+                    || t.Email.ToLower().Contains(keyword)
+                    || t.PhoneNumber.ToLower().Contains(keyword)
+                    || t.Comments.ToLower().Contains(keyword));
+            }
+
+            model.Contacts = contacts;
+
+            return View(model);
+        }
     }
 }

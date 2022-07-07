@@ -1,0 +1,46 @@
+﻿@model ContactSearchFormModel
+
+@{
+    ViewBag.Title = "Search Contacts";
+}
+
+<link href="~/css/style.css" rel="stylesheet" type="text/css" />
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+@if (Context.Request.Method == "POST")
+{
+    <h2>Contacts Matching Keyword "@Model.Keyword"</h2>
+}
+
+@if (Model.Contacts.Any())
+{
+    <h5>@Model.Contacts.Count() contacts found.</h5>
+    <div class="contacts-grid">
+        @await Html.PartialAsync("~/Views/Shared/_ContactPartial.cshtml", Model.Contacts)
+    </div>
+}
+else if (Context.Request.Method == "POST")
+{
+    <h5>No contacts found.</h5>
+}
+
+<form asp-action="Search">
+    <table class="contacts-entry form">
+        <tr>
+            <th>
+                <label asp-for="Keyword"></label>
+            </th>
+            <td>
+                <input asp-for="Keyword" class="form-control" placeholder="Keyword..." />
+                <span asp-validation-for="Keyword" class="small text-danger"></span>
+            </td>
+        </tr>
+    </table>
+    <input class="btn btn-primary" type="submit" value="Search" />
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

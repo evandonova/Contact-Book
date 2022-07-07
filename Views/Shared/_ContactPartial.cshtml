@@ -27,9 +27,13 @@
             <tr>
                 <th>Action</th>
                 <td>
-                    <a asp-controller="Contacts" asp-action="Edit" asp-route-id="@contact.Id" class="btn btn-secondary mb-2">Edit</a>
+                    <form asp-controller="Contacts" asp-action="Delete" asp-route-id="@contact.Id">
+                        <a asp-controller="Contacts" asp-action="Edit" asp-route-id="@contact.Id" class="btn btn-secondary mb-2">Edit</a>
                         <span></span>
-                    <a asp-controller="Contacts" asp-action="Delete" asp-route-id="@contact.Id" class="btn btn-secondary mb-2">Delete</a>
+
+                        <input type="hidden" value="Delete" class="btn btn-secondary mb-2" />
+                        <a onclick="this.parentNode.submit()" class="btn btn-secondary mb-2">Delete</a>
+                    </form>
                 </td>
             </tr>
         </tbody>
