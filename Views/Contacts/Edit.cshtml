@@ -1,0 +1,19 @@
+﻿@model ContactFormModel
+
+@{
+    ViewBag.Title = "Edit Contact";
+}
+
+<link href="~/css/style.css" rel="stylesheet" type="text/css" />
+
+<h2 class="text-center">@ViewBag.Title</h2>
+<hr />
+
+<form asp-action="Edit">
+    @await Html.PartialAsync("~/Views/Shared/_ContactFormPartial.cshtml", Model)
+    <input class="btn btn-primary" type="submit" value="Edit" />
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

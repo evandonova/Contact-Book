@@ -18,6 +18,7 @@ namespace Contact_Book.Controllers
         {
             var contacts = this.dbContext.Contacts
                 .Where(c => c.OwnerId == this.User.Id())
+                .OrderByDescending(c => c.DateCreated)
                 .Select(c => new ContactViewModel()
                 {
                     Id = c.Id,
@@ -62,6 +63,71 @@ namespace Contact_Book.Controllers
             this.dbContext.Contacts.Add(contact);
             this.dbContext.SaveChanges();
 
+            return RedirectToAction(nameof(All));
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var contact = dbContext.Contacts.Find(id);
+            if (contact == null)
+            {
+                // When contact with this id doesn't exist
+                return BadRequest();
+            }
+
+            if (this.User.Id() != contact.OwnerId)
+            {
+                // When current user is not an owner
+                return Unauthorized();
+            }
+
+            var contactModel = new ContactFormModel()
+            {
+                FirstName = contact.FirstName,
+                LastName = contact.LastName,
+                Email = contact.Email,
+                PhoneNumber = contact.PhoneNumber,
+                Comments = contact.Comments
+            };
+
+            return View(contactModel);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(int id, ContactFormModel contactModel)
+        {
+            var contact = this.dbContext.Contacts.Find(id);
+            if (contact == null)
+            {
+                return BadRequest();
+            }
+
+            if (this.User.Id() != contact.OwnerId)
+            {
+                // Not an owner -> return "Unauthorized"
+                return Unauthorized();
+            }
+
+            // Get contacts of given user, except the current one
+            var userContacts = this.dbContext.Contacts.Where(c => c.OwnerId == this.User.Id() && c.Id != id);
+            if (userContacts.Any(c => c.PhoneNumber == contactModel.PhoneNumber))
+            {
+                this.ModelState.AddModelError(nameof(contactModel.PhoneNumber),
+                    "You already have a contact with the given phone number!");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(contactModel);
+            }
+
+            contact.FirstName = contactModel.FirstName;
+            contact.LastName = contactModel.LastName;
+            contact.Email = contactModel.Email;
+            contact.PhoneNumber = contactModel.PhoneNumber;
+            contact.Comments = contactModel.Comments;
+
+            this.dbContext.SaveChanges();
             return RedirectToAction(nameof(All));
         }
     }

@@ -1,6 +1,6 @@
 ﻿@model ContactFormModel
 
-<table class="tasks-entry form">
+<table class="form">
     <tr>
         <th>
             <label asp-for="FirstName"></label>
@@ -15,7 +15,7 @@
             <label asp-for="LastName"></label>
         </th>
         <td>
-            <textarea asp-for="LastName" class="form-control" placeholder="Last Name..."></textarea>
+            <input asp-for="LastName" class="form-control" placeholder="Last Name...">
             <span asp-validation-for="LastName" class="small text-danger"></span>
         </td>
     </tr>
@@ -24,7 +24,7 @@
             <label asp-for="Email"></label>
         </th>
         <td>
-            <textarea asp-for="Email" class="form-control" placeholder="Email..."></textarea>
+            <input asp-for="Email" class="form-control" placeholder="Email...">
             <span asp-validation-for="Email" class="small text-danger"></span>
         </td>
     </tr>
@@ -33,7 +33,7 @@
             <label asp-for="PhoneNumber"></label>
         </th>
         <td>
-            <textarea asp-for="PhoneNumber" class="form-control" placeholder="Phone Number..."></textarea>
+            <input asp-for="PhoneNumber" class="form-control" placeholder="Phone Number...">
             <span asp-validation-for="PhoneNumber" class="small text-danger"></span>
         </td>
     </tr>
