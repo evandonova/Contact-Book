@@ -7,7 +7,7 @@ namespace Contact_Book.Models
     public class ContactSearchFormModel
     {
         [StringLength(MaxKeywordLength)]
-        public string Keyword { get; init; }
+        public string? Keyword { get; init; }
 
         public IEnumerable<ContactViewModel> Contacts { get; set; } = new List<ContactViewModel>();
     }

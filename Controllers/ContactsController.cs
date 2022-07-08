@@ -166,6 +166,7 @@ namespace Contact_Book.Controllers
 
             var contacts = this.dbContext
                 .Contacts
+                .Where(c => c.OwnerId == this.User.Id())
                 .Select(c => new ContactViewModel()
                 {
                     FirstName = c.FirstName,
