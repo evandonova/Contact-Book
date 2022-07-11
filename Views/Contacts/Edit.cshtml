@@ -11,7 +11,9 @@
 
 <form asp-action="Edit">
     @await Html.PartialAsync("~/Views/Shared/_ContactFormPartial.cshtml", Model)
-    <input class="btn btn-primary" type="submit" value="Edit" />
+    <div class="d-flex justify-content-center">
+         <input class="btn btn-primary col-7" type="submit" value="Edit" />
+    </div>
 </form>
 
 @section Scripts {
