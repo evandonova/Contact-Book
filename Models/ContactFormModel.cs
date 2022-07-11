@@ -19,6 +19,7 @@ namespace Contact_Book.Models
         [EmailAddress]
         public string Email { get; set; }
 
+        [Display(Name = "Phone Number")]
         [StringLength(MaxPhoneNumberLength, MinimumLength = MinPhoneNumberLength,
             ErrorMessage = "Phone number should be between {1} and {2} characters long.")]
         [RegularExpression(PhoneNumberRegex, ErrorMessage = "Enter a valid phone number (without spaces).")]
