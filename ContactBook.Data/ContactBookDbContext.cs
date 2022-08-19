@@ -15,7 +15,7 @@ namespace ContactBook.Data
             : base(options)
         {
             this.seedDb = seedDb;
-            this.Database.EnsureCreatedAsync();
+            this.Database.EnsureCreated();
         }
 
         public DbSet<Contact> Contacts { get; set; }
