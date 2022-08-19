@@ -1,11 +1,11 @@
-﻿using Contact_Book.Data;
-using Contact_Book.Data.Entities;
-using Contact_Book.Infrastructure;
-using Contact_Book.Models;
+﻿using ContactBook.Data;
+using ContactBook.Data.Entities;
+using ContactBook.WebApp.Infrastructure;
+using ContactBook.WebApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Contact_Book.Controllers
+namespace ContactBook.WebApp.Controllers
 {
     [Authorize]
     public class ContactsController : Controller

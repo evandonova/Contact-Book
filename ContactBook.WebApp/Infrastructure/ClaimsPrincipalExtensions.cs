@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace Contact_Book.Infrastructure
+namespace ContactBook.WebApp.Infrastructure
 {
     public static class ClaimsPrincipalExtensions
     {

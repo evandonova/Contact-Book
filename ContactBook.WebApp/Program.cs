@@ -1,6 +1,5 @@
-using Contact_Book.Data;
-using Contact_Book.Data.Entities;
-using Microsoft.AspNetCore.Identity;
+using ContactBook.Data;
+using ContactBook.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

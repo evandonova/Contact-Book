@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Contact_Book.Data;
+using ContactBook.Data;
 
-namespace Contact_Book.Models
+namespace ContactBook.WebApp.Models
 {
     using static DataConstants;
     public class ContactSearchFormModel

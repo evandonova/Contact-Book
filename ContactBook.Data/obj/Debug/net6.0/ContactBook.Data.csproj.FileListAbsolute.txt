@@ -1,0 +1,14 @@
+D:\Work\Contact-Book\ContactBook.Data\obj\Debug\net6.0\ContactBook.Data.csproj.AssemblyReference.cache
+D:\Work\Contact-Book\ContactBook.Data\obj\Debug\net6.0\ContactBook.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work\Contact-Book\ContactBook.Data\obj\Debug\net6.0\ContactBook.Data.AssemblyInfoInputs.cache
+D:\Work\Contact-Book\ContactBook.Data\obj\Debug\net6.0\ContactBook.Data.AssemblyInfo.cs
+D:\Work\Contact-Book\ContactBook.Data\obj\Debug\net6.0\ContactBook.Data.csproj.CoreCompileInputs.cache
+D:\Work\Contact-Book\ContactBook.Data\bin\Debug\net6.0\ContactBook.Data.deps.json
+D:\Work\Contact-Book\ContactBook.Data\bin\Debug\net6.0\ContactBook.Data.runtimeconfig.json
+D:\Work\Contact-Book\ContactBook.Data\bin\Debug\net6.0\ContactBook.Data.dll
+D:\Work\Contact-Book\ContactBook.Data\bin\Debug\net6.0\ContactBook.Data.pdb
+D:\Work\Contact-Book\ContactBook.Data\obj\Debug\net6.0\ContactBook.Data.dll
+D:\Work\Contact-Book\ContactBook.Data\obj\Debug\net6.0\refint\ContactBook.Data.dll
+D:\Work\Contact-Book\ContactBook.Data\obj\Debug\net6.0\ContactBook.Data.pdb
+D:\Work\Contact-Book\ContactBook.Data\obj\Debug\net6.0\ContactBook.Data.genruntimeconfig.cache
+D:\Work\Contact-Book\ContactBook.Data\obj\Debug\net6.0\ref\ContactBook.Data.dll

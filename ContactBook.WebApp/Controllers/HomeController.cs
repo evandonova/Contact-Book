@@ -1,11 +1,11 @@
-﻿using Contact_Book.Data;
-using Contact_Book.Infrastructure;
-using Contact_Book.Models;
+﻿using ContactBook.Data;
+using ContactBook.WebApp.Infrastructure;
+using ContactBook.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
 
-namespace Contact_Book.Controllers
+namespace ContactBook.WebApp.Controllers
 {
     public class HomeController : Controller
     {

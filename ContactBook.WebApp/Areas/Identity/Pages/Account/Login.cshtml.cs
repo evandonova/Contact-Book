@@ -1,13 +1,13 @@
 ﻿#nullable disable
 
 using System.ComponentModel.DataAnnotations;
-using Contact_Book.Data.Entities;
+using ContactBook.Data.Entities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Contact_Book.Areas.Identity.Pages.Account
+namespace ContactBook.WebApp.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
