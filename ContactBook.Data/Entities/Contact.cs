@@ -25,5 +25,6 @@ namespace ContactBook.Data.Entities
         public string? Comments { get; set; }
 
         public string OwnerId { get; init; }
+        public User Owner { get; init; }
     }
 }

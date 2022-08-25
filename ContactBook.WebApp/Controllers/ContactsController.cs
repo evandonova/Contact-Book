@@ -56,7 +56,7 @@ namespace ContactBook.WebApp.Controllers
                 LastName = contactModel.LastName,
                 PhoneNumber = contactModel.PhoneNumber,
                 Email = contactModel.Email,
-                Comments = contactModel.Comments == null ? String.Empty : contactModel.Comments,
+                Comments = contactModel.Comments,
                 DateCreated = DateTime.Now,
                 OwnerId = this.User.Id()
             };

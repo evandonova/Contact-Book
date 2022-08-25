@@ -1,5 +1,6 @@
 ﻿using ContactBook.Data;
 using ContactBook.Data.Entities;
+using ContactBook.WebAPI.Infrastructure;
 using ContactBook.WebAPI.Models.Response;
 using ContactBook.WebAPI.Models.User;
 using Microsoft.AspNetCore.Authorization;
@@ -114,7 +115,7 @@ namespace ContactBook.WebAPI.Controllers
                 return BadRequest(new ResponseMsg
                 { Message = "Password and Confirm Password don't match!" });
 
-            User user = new User()
+            var user = new User()
             {
                 Email = model.Email,
                 UserName = model.Email,
@@ -151,7 +152,9 @@ namespace ContactBook.WebAPI.Controllers
         [HttpGet("myData")]
         public IActionResult GetMyUserData()
         {
-            var currentUser = this.dbContext.Users.Find(GetCurrentUserId());
+            var currentUser = this.dbContext.Users
+                .FirstOrDefault(u => u.Email == this.User.Email());
+
             var currentUserModel = new UserModel
             {
                 FirstName = currentUser.FirstName,
@@ -161,18 +164,6 @@ namespace ContactBook.WebAPI.Controllers
             };
 
             return Ok(currentUserModel);
-        }
-
-        private string GetCurrentUserId()
-        {
-            string currentUsername = this.User.FindFirstValue(ClaimTypes.Name);
-
-            var currentUserId = this.dbContext
-                .Users
-                .FirstOrDefault(x => x.UserName == currentUsername)
-                .Id;
-
-            return currentUserId;
         }
     }
 }
