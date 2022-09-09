@@ -40,13 +40,13 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "TaskBoard Web API",
-        Description = "A simple ASP.NET Core Web API for the TaskBoard App",
+        Title = "Contact Book Web API",
+        Description = "A simple ASP.NET Core Web API for the Contact Book App",
         Contact = new OpenApiContact
         {
-            Name = "TaskBoard App",
+            Name = "Contact Book App (JS)",
             Email = string.Empty,
-            Url = new Uri("https://github.com/nakov/TaskBoard"),
+            Url = new Uri("https://github.com/nakov/ContactBook"),
         }
     });
 

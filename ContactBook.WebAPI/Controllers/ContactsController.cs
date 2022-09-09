@@ -189,11 +189,11 @@ namespace ContactBook.WebAPI.Controllers
         }
 
         /// <summary>
-        /// Edits a task.
+        /// Edits a contact.
         /// </summary>
         /// <remarks>
         /// You should be an authenticated user!
-        /// You should be the owner of the edited task!
+        /// You should be the owner of the edited contact!
         /// 
         /// Sample request:
         ///
@@ -272,7 +272,7 @@ namespace ContactBook.WebAPI.Controllers
         /// <response code="401">Returns "Unauthorized" when user is not authenticated or is not the owner of the contact</response>  
         /// <response code="404">Returns "Not Found" when contact with the given id doesn't exist</response>
         [HttpPatch("{id}")]
-        public IActionResult PatchTask(int id, ContactPatchModel contactModel)
+        public IActionResult PatchContact(int id, ContactPatchModel contactModel)
         {
             var contactExists = this.dbContext.Contacts.Any(c => c.Id == id);
             if (!contactExists)
@@ -318,7 +318,7 @@ namespace ContactBook.WebAPI.Controllers
         /// </summary>
         /// <remarks>
         /// You should be an authenticated user!
-        /// You should be the owner of the deleted task!
+        /// You should be the owner of the deleted contact!
         /// 
         /// Sample request:
         ///
@@ -331,7 +331,7 @@ namespace ContactBook.WebAPI.Controllers
         /// <response code="401">Returns "Unauthorized" when user is not authenticated or is not the owner of the contact</response>  
         /// <response code="404">Returns "Not Found" when contact with the given id doesn't exist</response> 
         [HttpDelete("{id}")]
-        public IActionResult DeleteTask(int id)
+        public IActionResult DeleteContact(int id)
         {
             var contactExists = this.dbContext.Contacts.Any(c => c.Id == id);
             if (!contactExists)

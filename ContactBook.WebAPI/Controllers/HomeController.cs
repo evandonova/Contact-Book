@@ -5,7 +5,7 @@ namespace ContactBook.WebAPI.Controllers
     public class HomeController : Controller
     {
         /// <summary>
-        /// Gets API info (Swagger UI).
+        /// Gets Swagger UI.
         /// </summary>
         /// <remarks>
         /// Sample request:
